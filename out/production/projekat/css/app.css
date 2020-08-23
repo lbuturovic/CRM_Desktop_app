@@ -1,0 +1,60 @@
+#btnDashboard {
+    -fx-background-image: url("../icons/dashboard.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10% 50%;
+}
+
+#btnCrm {
+    -fx-background-image: url("../icons/crm2.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+#btnMails {
+    -fx-background-image: url("../icons/mail.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10% 50%;
+}
+
+#btnClients {
+    -fx-background-image: url("../icons/clients.png");
+    -fx-background-position: 10% 50%;
+    -fx-background-repeat: no-repeat;
+}
+#btnContacts {
+    -fx-background-image: url("../icons/clients.png");
+    -fx-background-position: 10% 50%;
+    -fx-background-repeat: no-repeat;
+}
+
+#btnSignOut {
+    -fx-background-image: url("../icons/sign-out.png");
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+#btnAccounts {
+    -fx-background-image: url("../icons/accounts.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10% 50%;
+}
+
+#btnMyTeam {
+    -fx-background-image: url("../icons/team.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10% 50%;
+}
+#btnTasks {
+    -fx-background-image: url("../icons/to-do.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10% 50%;
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  #FFD54F;
+}
+.table-row-cell:selected {
+    -fx-background-color: orange;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}

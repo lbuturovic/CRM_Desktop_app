@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="720.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane prefHeight="500.0" prefWidth="720.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox style="-fx-background-color: #FFD54F;" HBox.hgrow="ALWAYS" />
+                  <VBox style="-fx-background-color: #FFF176;" HBox.hgrow="ALWAYS">
+                          <children>
+
+                          </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <StackPane.margin>
+                  <Insets bottom="45.0" left="45.0" right="45.0" top="45.0" />
+               </StackPane.margin>
+               <children>
+                  <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" style="-fx-background-color: #FFF176;" VBox.vgrow="ALWAYS">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <children>
+                        <Text fill="#ffa726" lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="DejaVu Serif Bold" size="30.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #bdbdbd; -fx-border-width: 0px 0px 2px 0px;">
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                           <children>
+                              <TextField fx:id="username" promptText="username or email" style="-fx-background-color: transparent;">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin></TextField>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="60.0" layoutY="126.0" maxWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: white; -fx-border-color: #bdbdbd; -fx-border-width: 0px 0px 2px 0px;">
+                           <children>
+                              <PasswordField fx:id="password" promptText="password" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </PasswordField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Button fx:id="login" mnemonicParsing="false" onAction="#loginAction" prefWidth="180.0" style="-fx-background-color: #FFA726; -fx-background-radius: 500px; -fx-text-fill: white;" text="Login">
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Label fx:id="message" alignment="CENTER" textFill="#ffa726" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="4.0" left="30.0" right="30.0" top="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="message2" alignment="CENTER" layoutX="185.0" layoutY="298.0" textFill="#ffa726" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+               </children>
+            </VBox>
+         </children></StackPane>
+   </children>
+</AnchorPane>

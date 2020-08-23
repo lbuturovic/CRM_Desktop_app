@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@/css/app.css" />
+   </stylesheets>
+   <children>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="650.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="650.0" prefWidth="300.0" style="-fx-background-color: #FFD54F;">
+               <children>
+                  <Button fx:id="btnCrm" mnemonicParsing="false" prefHeight="90.0" prefWidth="280.0" style="-fx-background-color: transparent;">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnDashboard" alignment="CENTER" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-alignment: right;" text="Dashboard" textAlignment="RIGHT" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="btnAccounts" alignment="CENTER" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" onAction="#accountsAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent;-fx-font-weight: bold;" text="Accounts" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="btnContacts" alignment="CENTER" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" onAction="#contactsAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Contacts">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="btnTasks" alignment="CENTER" layoutX="10.0" layoutY="176.0" mnemonicParsing="false" onAction="#tasksAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent;-fx-font-weight: bold;" text="Tasks">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="btnMyTeam" alignment="CENTER" layoutX="10.0" layoutY="225.0" mnemonicParsing="false" onAction="#myTeamAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="My team">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="btnMails" alignment="CENTER" layoutX="10.0" layoutY="274.0" mnemonicParsing="false" onAction="#sendEmailsAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Send emails">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Button>
+                  <Button layoutX="10.0" layoutY="323.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Button">
+                     <VBox.margin>
+                        <Insets bottom="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
+
+         </children>
+      </HBox>
+      <VBox layoutX="300.0" prefHeight="66.0" prefWidth="1000.0" AnchorPane.bottomAnchor="584.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="66.0" prefWidth="1000.0" style="-fx-background-color: #FFF176;" VBox.vgrow="NEVER">
+            <Pane style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" text="Help" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnSignOut" alignment="CENTER" onAction="#SignOutAction" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
+            <Button alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" text="Help" HBox.hgrow="ALWAYS" />
+         </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="300.0" layoutY="66.0" prefHeight="88.0" prefWidth="1000.0" AnchorPane.bottomAnchor="496.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="message3" alignment="CENTER" prefHeight="88.0" prefWidth="245.0" text="Label">
+                     <font>
+                        <Font name="System Italic" size="16.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="0.4699999988079071" blue="0.5035915374755859" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
