@@ -20,7 +20,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="btnDashboard" alignment="CENTER" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-alignment: right;" text="Dashboard" textAlignment="RIGHT" VBox.vgrow="ALWAYS">
+                        <Button fx:id="btnDashboard" alignment="CENTER" mnemonicParsing="false" onAction="#dashboardAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-alignment: right;" text="Dashboard" textAlignment="RIGHT" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets bottom="15.0" />
                             </VBox.margin>

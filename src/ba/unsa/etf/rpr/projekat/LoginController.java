@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class LoginController  {
+public class LoginController {
 
   public TextField username;
   public PasswordField password;
@@ -47,4 +47,6 @@ public class LoginController  {
       }
 
     }
+
+
 }

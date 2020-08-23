@@ -1,11 +1,14 @@
 package ba.unsa.etf.rpr.projekat;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DAO {
     private static DAO instance;
+    private PreparedStatement getUsersQuery;
     private Connection conn;
     private PreparedStatement getUserQuery;
     private PreparedStatement getDepartmentQuery;
@@ -14,6 +17,7 @@ public class DAO {
         if (instance == null) instance = new DAO();
         return instance;
     }
+
     private DAO() {
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:baza.db");
@@ -32,6 +36,7 @@ public class DAO {
         }
         try {
             getDepartmentQuery = conn.prepareStatement("SELECT name FROM department WHERE id=?");
+            getUsersQuery = conn.prepareStatement("SELECT * FROM users ORDER BY department");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -51,13 +56,27 @@ public class DAO {
         }
     }
 
+    public ArrayList<User> users() {
+        ArrayList<User> result = new ArrayList();
+        try {
+            ResultSet rs = getUsersQuery.executeQuery();
+            while (rs.next()) {
+                User user = getUserFromResultSet(rs);
+                result.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     private User getUserFromResultSet(ResultSet rs) throws SQLException {
-        User user = new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(7), getDepartment(rs.getInt(8)),rs.getInt(1));
+        User user = new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(7), getDepartment(rs.getInt(8)), rs.getInt(1));
         return user;
     }
 
 
-    private String getDepartment(int id){
+    private String getDepartment(int id) {
         try {
             getDepartmentQuery.setInt(1, id);
             ResultSet rs = getDepartmentQuery.executeQuery();
@@ -90,7 +109,7 @@ public class DAO {
             String sqlUpit = "";
             while (ulaz.hasNext()) {
                 sqlUpit += ulaz.nextLine();
-                if ( sqlUpit.length() > 1 && sqlUpit.charAt( sqlUpit.length()-1 ) == ';') {
+                if (sqlUpit.length() > 1 && sqlUpit.charAt(sqlUpit.length() - 1) == ';') {
                     try {
                         Statement stmt = conn.createStatement();
                         stmt.execute(sqlUpit);
