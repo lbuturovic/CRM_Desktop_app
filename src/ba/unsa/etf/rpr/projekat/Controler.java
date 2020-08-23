@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+import static javafx.scene.control.PopupControl.USE_PREF_SIZE;
+
 public abstract class Controler {
     protected DAO dao;
     protected User user;
@@ -32,13 +35,24 @@ public abstract class Controler {
     protected void openMyTeam(){
        Stage stage = prepareForOpen("/fxml/myTeam.fxml",new MyTeamController(user));
         stage.setTitle("My Team");
-        stage.setScene(new Scene(root,stage.getWidth(), stage.getHeight()));
+        double width = stage.getWidth();
+        double height =  stage.getHeight();
+        stage.setScene(new Scene(root,USE_PREF_SIZE,USE_PREF_SIZE));
+        stage.setWidth(width);
+        stage.setHeight(height);
         stage.show();
     }
     protected void openDashboard(){
         Stage stage = prepareForOpen("/fxml/app.fxml",new AppController(user));
         stage.setTitle("Dashboard");
-        stage.setScene(new Scene(root,stage.getWidth(), stage.getHeight()));
+        double width = stage.getWidth();
+        double height =  stage.getHeight();
+        stage.setScene(new Scene(root,USE_PREF_SIZE,USE_PREF_SIZE));
+        stage.setWidth(width);
+        stage.setHeight(height);
         stage.show();
+    }
+    protected void signOut(){
+
     }
 }

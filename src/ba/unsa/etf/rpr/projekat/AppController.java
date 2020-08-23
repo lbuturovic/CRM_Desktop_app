@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+
 public class AppController extends Controler {
     public Label message3;
 
@@ -36,7 +38,7 @@ public class AppController extends Controler {
             root = loader.load();
             ctrl.username.setText(user.getUsername());
             stage.setTitle("Login");
-            stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
 
 

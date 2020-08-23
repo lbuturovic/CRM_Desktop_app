@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+
 public class LoginController {
 
   public TextField username;
@@ -33,7 +35,9 @@ public class LoginController {
           root = loader.load();
           stage.setTitle("CRM");
           appController.message3.setText("Welcome, " + user.getName());
-          stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
+          stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+          stage.setMinWidth(1300);
+          stage.setMinHeight(650);
           stage.show();
 
         } catch (IOException e) {
