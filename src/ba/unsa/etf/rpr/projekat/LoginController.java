@@ -36,8 +36,8 @@ public class LoginController {
           stage.setTitle("CRM");
           appController.message3.setText("Welcome, " + user.getName());
           stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-          stage.setMinWidth(1300);
-          stage.setMinHeight(650);
+          stage.setMinWidth(stage.getWidth());
+          stage.setMinHeight(stage.getHeight());
           stage.show();
 
         } catch (IOException e) {

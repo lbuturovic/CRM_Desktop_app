@@ -129,4 +129,7 @@ public class MyTeamController extends Controler{
     public void dashboardAction(ActionEvent actionEvent) {
         openDashboard();
     }
+    public void sendEmailsAction(ActionEvent actionEvent){
+        openEmailsLogin("");
+    }
 }

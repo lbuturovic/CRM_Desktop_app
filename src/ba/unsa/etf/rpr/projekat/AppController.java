@@ -40,7 +40,7 @@ public class AppController extends Controler {
     }
 
     public void sendEmailsAction(ActionEvent actionEvent) {
-
+        openEmailsLogin("");
 
     }
 
