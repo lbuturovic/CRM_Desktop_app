@@ -74,5 +74,14 @@ public abstract class Controler {
             e.printStackTrace();
         }
     }
-
+    protected void openEmailsLogin(String addresses) {
+        Stage stage = prepareForOpen("/fxml/sendEmailsLogin.fxml", new SendEmailsLoginController(user, addresses));
+        stage.setTitle("Gmail Login");
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+        stage.setScene(new Scene(root, USE_PREF_SIZE, USE_PREF_SIZE));
+        stage.setWidth(width);
+        stage.setHeight(height);
+        stage.show();
+    }
 }

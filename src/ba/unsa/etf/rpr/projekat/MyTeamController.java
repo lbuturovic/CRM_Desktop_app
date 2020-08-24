@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MyTeamController extends Controler{
     //private User user;
@@ -57,6 +58,16 @@ public class MyTeamController extends Controler{
 
 
     public void mailAction(ActionEvent actionEvent) {
+        String addresses = "";
+        ObservableList<User> users = tableViewUsers.getSelectionModel().getSelectedItems();
+        ArrayList<User> clients = new ArrayList<User>(users);
+        if(clients!=null)
+            for (int i = 0; i < clients.size(); i++) {
+                if(i==clients.size()-1) addresses = clients.get(i).getEmail();
+                else  addresses = clients.get(i).getEmail() + ",";
+            }
+        else addresses = "";
+        openEmailsLogin(addresses);
 
     }
 
