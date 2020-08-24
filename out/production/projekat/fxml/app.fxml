@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="650.0" minWidth="1300.0" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="650.0" minWidth="1300.0" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
    <stylesheets>
       <URL value="@/css/app.css" />
    </stylesheets>
@@ -108,7 +108,7 @@
             <HBox prefHeight="66.0" prefWidth="1000.0" style="-fx-background-color: #FFF176;" VBox.vgrow="NEVER">
             <Pane style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
             <Button alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" text="Help" HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnSignOut" alignment="CENTER" onAction="#SignOutAction" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
+            <Button fx:id="btnSignOut" alignment="CENTER" onAction="#signOutAction" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
             <Button alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" text="Help" HBox.hgrow="ALWAYS" />
          </HBox>
          </children>

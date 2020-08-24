@@ -28,26 +28,6 @@ public class AppController extends Controler {
 
     }
 
-    public void SignOutAction(ActionEvent actionEvent) {
-        Stage stage = (Stage) message3.getScene().getWindow();
-        Parent root = null;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-            LoginController ctrl = new LoginController();
-            loader.setController(ctrl);
-            root = loader.load();
-            ctrl.username.setText(user.getUsername());
-            stage.setTitle("Login");
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.show();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public void accountsAction(ActionEvent actionEvent) {
 
     }
@@ -66,5 +46,9 @@ public class AppController extends Controler {
 
     public void myTeamAction(ActionEvent actionEvent) {
         openMyTeam();
+    }
+
+    public void signOutAction(ActionEvent actionEvent) {
+        openLogin();
     }
 }

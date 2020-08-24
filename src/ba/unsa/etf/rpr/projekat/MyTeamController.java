@@ -55,32 +55,12 @@ public class MyTeamController extends Controler{
         );
     }
 
-    public void SignOutAction(ActionEvent actionEvent) {
-        Stage stage = (Stage) tableViewUsers.getScene().getWindow();
-        Parent root = null;
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
-            LoginController ctrl = new LoginController();
-            loader.setController(ctrl);
-            root = loader.load();
-            ctrl.username.setText(user.getUsername());
-            stage.setTitle("Login");
-            stage.setScene(new Scene(root, stage.getWidth(), stage.getHeight()));
-            stage.show();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void mailAction(ActionEvent actionEvent) {
 
     }
 
-    public void dashboardAction(ActionEvent actionEvent) {
-        openDashboard();
-    }
+
 
     @FXML
     void search_user() {
@@ -129,5 +109,13 @@ public class MyTeamController extends Controler{
 
     public void deselectAction(ActionEvent Actionevent) {
         tableViewUsers.getSelectionModel().clearSelection();
+    }
+
+    public void signOutAction(ActionEvent actionEvent) {
+        openLogin();
+    }
+
+    public void dashboardAction(ActionEvent actionEvent) {
+        openDashboard();
     }
 }

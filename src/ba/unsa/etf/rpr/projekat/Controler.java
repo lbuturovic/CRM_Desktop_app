@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -52,7 +53,26 @@ public abstract class Controler {
         stage.setHeight(height);
         stage.show();
     }
-    protected void signOut(){
+    protected void openLogin(){
+        Stage stage = (Stage) btnDashboard.getScene().getWindow();
+        root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            LoginController ctrl = new LoginController();
+            loader.setController(ctrl);
+            root = loader.load();
+            ctrl.username.setText(user.getUsername());
+            stage.setTitle("Login");
+            double width = stage.getWidth();
+            double height =  stage.getHeight();
+            stage.setScene(new Scene(root,USE_PREF_SIZE,USE_PREF_SIZE));
+            stage.setWidth(width);
+            stage.setHeight(height);
+            stage.show();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 }
