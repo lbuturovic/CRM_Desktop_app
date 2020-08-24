@@ -2,6 +2,8 @@ package ba.unsa.etf.rpr.projekat;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,6 +84,46 @@ public class MyTeamController extends Controler{
 
     @FXML
     void search_user() {
+        colUserName.setCellValueFactory(new PropertyValueFactory("name"));
+        colUserSurname.setCellValueFactory(new PropertyValueFactory("surname"));
+        colUserUsername.setCellValueFactory(new PropertyValueFactory("username"));
+        colUserEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        colUserPhoneNumber.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
+        colUserDepartment.setCellValueFactory(new PropertyValueFactory<User,String>("department"));
+
+        filteredUsers = FXCollections.observableArrayList(dao.users());
+        tableViewUsers.setItems(filteredUsers);
+        FilteredList<User> filteredData = new FilteredList<>(filteredUsers, b -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (person.getUsername().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                    return true; // Filter matches username
+                } else if (person.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches name
+                }else if (person.getPhoneNumber().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches phone number
+                }
+                else if(person.getSurname().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true; // Filter matches surname
+                }
+                else if (person.getDepartment().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true; // Filter matches department
+                }
+                else if (String.valueOf(person.getEmail()).indexOf(lowerCaseFilter)!=-1)
+                    return true;// Filter matches email
+
+                else
+                    return false; // Does not match.
+            });
+        });
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableViewUsers.comparatorProperty());
+        tableViewUsers.setItems(sortedData);
 
     }
 
