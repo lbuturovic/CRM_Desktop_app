@@ -1,3 +1,9 @@
+.fieldOk {
+    -fx-control-inner-background: #A6F5B6;
+}
+.fieldNotOk {
+    -fx-control-inner-background: lightpink;
+}
 #btnDashboard {
     -fx-background-image: url("../icons/dashboard.png");
     -fx-background-repeat: no-repeat;
