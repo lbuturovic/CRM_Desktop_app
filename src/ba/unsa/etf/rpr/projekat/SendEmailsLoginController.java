@@ -2,10 +2,16 @@ package ba.unsa.etf.rpr.projekat;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import javax.mail.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -45,7 +51,7 @@ public class SendEmailsLoginController extends Controler {
         boolean isOk = true;
         try {
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", 587, email,pass);
+            transport.connect("smtp.gmail.com", 587, email, pass);
             System.out.println("konektovano");
         } catch (NoSuchProviderException e) {
             message.setText("Problem with server.");
@@ -56,6 +62,10 @@ public class SendEmailsLoginController extends Controler {
             message.setText("Your username or password");
             message2.setText(" is inncorect.");
             isOk = false;
+        }
+        if (isOk == true) {
+            user.setPassword(pass);
+            openEmails(addresses);
         }
     }
 
