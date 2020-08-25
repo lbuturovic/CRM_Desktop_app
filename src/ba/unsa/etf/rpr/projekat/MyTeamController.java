@@ -67,7 +67,9 @@ public class MyTeamController extends Controler{
                 else  addresses = clients.get(i).getEmail() + ",";
             }
         else addresses = "";
+        if(user.getPassword()==null)
         openEmailsLogin(addresses);
+        else openEmails(addresses);
 
     }
 

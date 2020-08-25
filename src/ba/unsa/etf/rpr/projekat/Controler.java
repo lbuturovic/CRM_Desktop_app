@@ -84,4 +84,14 @@ public abstract class Controler {
         stage.setHeight(height);
         stage.show();
     }
+    protected void openEmails(String addresses) {
+        Stage stage = prepareForOpen("/fxml/sendEmails.fxml", new SendEmailsController(user, addresses));
+        stage.setTitle("Send emails");
+        double width = stage.getWidth();
+        double height = stage.getHeight();
+        stage.setScene(new Scene(root, USE_PREF_SIZE, USE_PREF_SIZE));
+        stage.setWidth(width);
+        stage.setHeight(height);
+        stage.show();
+    }
 }

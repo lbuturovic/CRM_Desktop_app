@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
    <stylesheets>
       <URL value="@/css/app.css" />
    </stylesheets>
@@ -20,7 +20,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btnDashboard" alignment="CENTER" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-alignment: right;" text="Dashboard" textAlignment="RIGHT" VBox.vgrow="ALWAYS">
+                  <Button fx:id="btnDashboard" alignment="CENTER" mnemonicParsing="false" onAction="#dashboardAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-alignment: right;" text="Dashboard" textAlignment="RIGHT" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="15.0" />
                      </VBox.margin>
@@ -75,7 +75,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="btnMails" alignment="CENTER" layoutX="10.0" layoutY="274.0" mnemonicParsing="false" onAction="#sendEmailsAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Send emails">
+                  <Button fx:id="btnMails" alignment="CENTER" layoutX="10.0" layoutY="274.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Send emails">
                      <VBox.margin>
                         <Insets bottom="15.0" />
                      </VBox.margin>
@@ -107,7 +107,7 @@
             <HBox prefHeight="66.0" prefWidth="1000.0" style="-fx-background-color: #FFF176;">
             <Pane style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
             <Button alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" text="Help" />
-            <Button fx:id="btnSignOut" alignment="CENTER" onAction="#SignOutAction" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" />
+            <Button fx:id="btnSignOut" alignment="CENTER" onAction="#signOutAction" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" />
             <Button alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" text="Help" />
          </HBox>
          </children>
