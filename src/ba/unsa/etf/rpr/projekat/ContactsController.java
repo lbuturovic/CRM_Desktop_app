@@ -158,7 +158,9 @@ public class ContactsController extends Controler {
     }
 
     public void addAction(ActionEvent actionEvent) {
-
+        dao.addContact(fldName.getText(), fldJobTitle.getText(), choiceAccount.getSelectionModel().getSelectedItem().getId(), fldEmail.getText(), fldPhone.getText(), user.getId(), user.getId());
+        listContacts = FXCollections.observableArrayList(dao.contacts());
+        tableViewContacts.setItems(listContacts);
     }
 
     public void deleteAction(ActionEvent actionEvent) {
@@ -168,12 +170,17 @@ public class ContactsController extends Controler {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.find();
     }
-
     public void unselectAction(ActionEvent Actionevent) {
         tableViewContacts.getSelectionModel().clearSelection();
     }
 
     public void updateAction(ActionEvent actionEvent) {
+
+        int id = tableViewContacts.getSelectionModel().getSelectedItem().getId();
+        int accountId = choiceAccount.getSelectionModel().getSelectedItem().getId();
+        dao.updateContact(fldName.getText(), fldJobTitle.getText(), accountId, fldEmail.getText(), fldPhone.getText(), user.getId(), id);
+        listContacts = FXCollections.observableArrayList(dao.contacts());
+        tableViewContacts.setItems(listContacts);
 
     }
 }
