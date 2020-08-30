@@ -13,6 +13,7 @@ public class DAO {
     private PreparedStatement getUserQuery;
     private PreparedStatement getDepartmentQuery;
     private PreparedStatement getUserByIdQuery;
+    private PreparedStatement getAccountTypeQuery;
 
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
@@ -39,6 +40,7 @@ public class DAO {
             getDepartmentQuery = conn.prepareStatement("SELECT name FROM department WHERE id=?");
             getUsersQuery = conn.prepareStatement("SELECT * FROM users ORDER BY department");
             getUserByIdQuery = conn.prepareStatement("SELECT * FROM users WHERE id=?");
+            getAccountTypeQuery = conn.prepareStatement("SELECT type FROM accountsType WHERE id=(SELECT type FROM accounts WHERE id=? )");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,7 +89,22 @@ public class DAO {
         User user = new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(7), getDepartment(rs.getInt(8)), rs.getInt(1));
         return user;
     }
+    private Account getAccountFromResultSet(ResultSet rs) throws SQLException {
+        Account account = new Account(rs.getInt(1), rs.getString(2), getAccountType(rs.getInt(3)), rs.getString(4),rs.getString(5),getUser(rs.getInt(6)),getUser(rs.getInt(7)));
+        return account;
+    }
 
+    private String getAccountType(int accountId) {
+        try {
+            getAccountTypeQuery.setInt(1, accountId);
+            ResultSet rs = getAccountTypeQuery.executeQuery();
+            if (!rs.next()) return null;
+            return rs.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     private String getDepartment(int id) {
         try {
