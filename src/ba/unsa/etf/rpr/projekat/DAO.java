@@ -19,6 +19,7 @@ public class DAO {
     private PreparedStatement getAccountsQuery;
     private PreparedStatement updateContactQuery;
     private PreparedStatement addContactQuery;
+    private PreparedStatement deleteContactQuery;
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
         return instance;
@@ -50,6 +51,7 @@ public class DAO {
             getAccountsQuery = conn.prepareStatement("SELECT * FROM accounts");
             updateContactQuery = conn.prepareStatement("UPDATE contacts SET name=?, jobTitle=?, account=?, email=?, phone=?, updateBy=? WHERE id=?");
             addContactQuery = conn.prepareStatement("INSERT INTO contacts (name, jobTitle, account, email, phone, initials, updateBy) VALUES (?,?,?,?,?,?,?)");
+            deleteContactQuery = conn.prepareStatement("DELETE FROM contacts WHERE id=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -200,6 +202,16 @@ public class DAO {
             addContactQuery.setInt(7,updatedById);
             addContactQuery.setInt(6,initialsId);
             addContactQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deleteContact(int id){
+        try {
+            deleteContactQuery.setInt(1,id);
+            deleteContactQuery.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
