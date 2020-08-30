@@ -54,6 +54,14 @@
                                 <Insets left="40.0" top="35.0" />
                             </HBox.margin>
                         </Button>
+                  <Button fx:id="btn11" layoutX="521.0" layoutY="45.0" mnemonicParsing="false" onAction="#txtFileAction" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #FFF176; -fx-background-radius: 500px; -fx-border-insets: 5px;" text="Txt File">
+                     <font>
+                        <Font name="DejaVu Sans" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="40.0" top="35.0" />
+                     </HBox.margin>
+                  </Button>
                     </children></HBox>
             </children>
         </VBox>

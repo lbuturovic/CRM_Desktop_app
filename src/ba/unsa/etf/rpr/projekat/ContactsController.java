@@ -11,12 +11,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import net.sf.jasperreports.engine.JRException;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ContactsController extends Controler {
     public TextField filterField;
+    public TextField fileName;
     public TableView<Contact> tableViewContacts;
     public TableColumn colContactName;
     public TableColumn colContactJobTitle;
@@ -229,6 +234,28 @@ public class ContactsController extends Controler {
             new ContactsReport().showReport(dao.getConn());
         } catch (JRException e1) {
             e1.printStackTrace();
+        }
+    }
+
+    public void txtFileAction(ActionEvent txtFileAction){
+        File file = new File("contacts.txt");
+        zapisiDatoteku(file);
+
+    }
+
+    private void zapisiDatoteku(File file) {
+        if(file==null) return;
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for(Contact korisnik : dao.contacts()){
+                bufferedWriter.write(korisnik.getName() + ":" + korisnik.getJobTitle() + ":" +
+                        korisnik.getAccount().getName() +":" + korisnik.getEmail() + ":" + korisnik.getPhone() +  "::");
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
