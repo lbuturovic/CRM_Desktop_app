@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS "users" (
-    "id"    INTEGER ,
+    "id"    INTEGER PRIMARY KEY,
 	"name"	TEXT,
 	"surname"	TEXT,
 	"username"	TEXT,
@@ -8,12 +8,11 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"password"	TEXT,
 	"phoneNumber"  TEXT,
 	"department" INTEGER ,
-	FOREIGN KEY("department") REFERENCES "department",
-	PRIMARY KEY("id")
+	FOREIGN KEY("department") REFERENCES "department"
 );
 
 CREATE TABLE IF NOT EXISTS "accounts" (
-    "id"    INTEGER ,
+    "id"    INTEGER PRIMARY KEY AUTOINCREMENT,
 	"name"	TEXT,
 	"type"	INTEGER,
 	"phone"	TEXT,
@@ -22,11 +21,10 @@ CREATE TABLE IF NOT EXISTS "accounts" (
 	"updateBy" INTEGER ,
 	FOREIGN KEY("initials") REFERENCES "users",
 	FOREIGN KEY("type") REFERENCES "accountsType",
-	FOREIGN KEY ("updateBy") REFERENCES "users",
-	PRIMARY KEY("id")
+	FOREIGN KEY ("updateBy") REFERENCES "users"
 );
 CREATE TABLE IF NOT EXISTS "contacts" (
-    "id"    INTEGER ,
+    "id"    INTEGER PRIMARY KEY AUTOINCREMENT,
 	"name"	TEXT,
 	"jobTitle"	TEXT,
 	"account"	INTEGER,
@@ -36,8 +34,7 @@ CREATE TABLE IF NOT EXISTS "contacts" (
 	"updateBy" INTEGER ,
 	FOREIGN KEY("initials") REFERENCES "users",
 	FOREIGN KEY("account") REFERENCES "accounts",
-	FOREIGN KEY("updateBy") REFERENCES "users",
-	PRIMARY KEY("id")
+	FOREIGN KEY("updateBy") REFERENCES "users"
 );
 CREATE TABLE IF NOT EXISTS "department" (
 "id"    INTEGER ,
