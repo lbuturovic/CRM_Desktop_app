@@ -164,6 +164,10 @@ public class ContactsController extends Controler {
     }
 
     public void deleteAction(ActionEvent actionEvent) {
+        dao.deleteContact(tableViewContacts.getSelectionModel().getSelectedItem().getId());
+        tableViewContacts.getSelectionModel().clearSelection();
+        listContacts = FXCollections.observableArrayList(dao.contacts());
+        tableViewContacts.setItems(listContacts);
     }
 
     public static boolean validate(String emailStr) {
