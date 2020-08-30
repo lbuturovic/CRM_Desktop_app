@@ -17,6 +17,8 @@ public class DAO {
     private PreparedStatement getAccountByIdQuery;
     private PreparedStatement getContactsQuery;
     private PreparedStatement getAccountsQuery;
+    private PreparedStatement updateContactQuery;
+    private PreparedStatement addContactQuery;
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
         return instance;
@@ -46,6 +48,8 @@ public class DAO {
             getAccountByIdQuery = conn.prepareStatement("SELECT * FROM accounts WHERE id=?");
             getContactsQuery = conn.prepareStatement("SELECT * FROM contacts");
             getAccountsQuery = conn.prepareStatement("SELECT * FROM accounts");
+            updateContactQuery = conn.prepareStatement("UPDATE contacts SET name=?, jobTitle=?, account=?, email=?, phone=?, updateBy=? WHERE id=?");
+            addContactQuery = conn.prepareStatement("INSERT INTO contacts (name, jobTitle, account, email, phone, initials, updateBy) VALUES (?,?,?,?,?,?,?)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -167,6 +171,39 @@ public class DAO {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public void updateContact(String name, String jobTitle, int accountId, String email, String phone, int updatedById, int id) {
+        try {
+            updateContactQuery.setString(1,name);
+            updateContactQuery.setString(2,jobTitle);
+            updateContactQuery.setInt(3,accountId);
+            updateContactQuery.setString(4,email);
+            updateContactQuery.setString(5,phone);
+            updateContactQuery.setInt(6,updatedById);
+            updateContactQuery.setInt(7,id);
+            updateContactQuery.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addContact(String name, String jobTitle, int accountId, String email, String phone, int initialsId, int updatedById){
+
+        try {
+            addContactQuery.setString(1,name);
+            addContactQuery.setString(2,jobTitle);
+            addContactQuery.setInt(3,accountId);
+            addContactQuery.setString(4,email);
+            addContactQuery.setString(5,phone);
+            addContactQuery.setInt(7,updatedById);
+            addContactQuery.setInt(6,initialsId);
+            addContactQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void removeInstance() {
