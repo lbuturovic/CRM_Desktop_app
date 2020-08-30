@@ -67,12 +67,12 @@ INSERT INTO "users" VALUES (6,'Emir','Emirić','emirce','emir@gmail.com','passwo
 INSERT INTO "users" VALUES (7,'Marko','Markić','mario','markic@gmail.com','password','000-000-000',3);
 INSERT INTO "accounts" VALUES (1,'Brigadier Software',1,'0420 200001','www.brigadiersoftware.co',1,1);
 INSERT INTO "accounts" VALUES (2,'Bruton Industrial Metals',2,'0420 200001','www.brigadiersoftware.co',4,5);
-INSERT INTO "accounts" VALUES (3,'Kompanija3',3,'0420 200001','www.brigadiersoftware.co',7,2);
-INSERT INTO "accounts" VALUES (4,'Kompanija4',3,'0420 200001','www.brigadiersoftware.co',1,4);
+INSERT INTO "accounts" VALUES (3,'Kompanija1',3,'0420 200001','www.brigadiersoftware.co',7,2);
+INSERT INTO "accounts" VALUES (4,'Kompanija2',3,'0420 200001','www.brigadiersoftware.co',1,4);
 INSERT INTO "accounts" VALUES (5,'Kompanija3',4,'0420 200001','www.brigadiersoftware.co',7,5);
 INSERT INTO "accounts" VALUES (6,'Kompanija4',7,'0420 200001','www.brigadiersoftware.co',1,1);
-INSERT INTO "accounts" VALUES (7,'Kompanija3',5,'0420 200001','www.brigadiersoftware.co',7,1);
-INSERT INTO "accounts" VALUES (8,'Kompanija4',4,'0420 200001','www.brigadiersoftware.co',1,1);
+INSERT INTO "accounts" VALUES (7,'Kompanija5',5,'0420 200001','www.brigadiersoftware.co',7,1);
+INSERT INTO "accounts" VALUES (8,'Kompanija6',4,'0420 200001','www.brigadiersoftware.co',1,1);
 INSERT INTO "contacts" VALUES (1,'Susan Jones','Owner',2, 'lejla_0303@hotmail.com','064-528-445',1,1);
 INSERT INTO "contacts" VALUES (2,'Jonny Grade','Sales Manager',2, 'diana_buturovic@hotmail.com','064-528-445',1,2);
 INSERT INTO "contacts" VALUES (3,'Adam Sandler','Owner',3, 'lejla_0303@hotmail.com','064-528-445',1,4);
