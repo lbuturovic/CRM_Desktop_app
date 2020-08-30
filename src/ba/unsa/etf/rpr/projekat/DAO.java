@@ -232,6 +232,10 @@ public class DAO {
         }
     }
 
+    public Connection getConn(){
+        return conn;
+    }
+
     private void regenerisiBazu() {
         Scanner ulaz = null;
         try {

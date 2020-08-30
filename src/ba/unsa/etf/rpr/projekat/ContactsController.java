@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.sf.jasperreports.engine.JRException;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -224,6 +225,10 @@ public class ContactsController extends Controler {
         openLogin();
     }
     public void reportAction(ActionEvent actionEvent){
-
+        try {
+            new ContactsReport().showReport(dao.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
     }
 }
