@@ -75,7 +75,6 @@ public class DAO {
         return user;
     }
 
-
     private String getDepartment(int id) {
         try {
             getDepartmentQuery.setInt(1, id);
