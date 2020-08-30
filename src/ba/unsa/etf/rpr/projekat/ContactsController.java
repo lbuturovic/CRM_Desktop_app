@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -155,6 +156,18 @@ public class ContactsController extends Controler {
     }
 
     public void mailAction(ActionEvent actionEvent) {
+        String addresses = "";
+        ObservableList<Contact> contacts = tableViewContacts.getSelectionModel().getSelectedItems();
+        ArrayList<Contact> clients = new ArrayList<Contact>(contacts);
+        if(clients!=null)
+            for (int i = 0; i < clients.size(); i++) {
+                if(i==clients.size()-1) addresses = clients.get(i).getEmail();
+                else  addresses = clients.get(i).getEmail() + ",";
+            }
+        else addresses = "";
+        if(user.getPassword()==null)
+            openEmailsLogin(addresses);
+        else openEmails(addresses);
     }
 
     public void addAction(ActionEvent actionEvent) {
