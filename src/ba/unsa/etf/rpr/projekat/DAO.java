@@ -16,7 +16,7 @@ public class DAO {
     private PreparedStatement getAccountTypeQuery;
     private PreparedStatement getAccountByIdQuery;
     private PreparedStatement getContactsQuery;
-
+    private PreparedStatement getAccountsQuery;
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
         return instance;
@@ -45,6 +45,7 @@ public class DAO {
             getAccountTypeQuery = conn.prepareStatement("SELECT type FROM accountsType WHERE id=(SELECT type FROM accounts WHERE id=? )");
             getAccountByIdQuery = conn.prepareStatement("SELECT * FROM accounts WHERE id=?");
             getContactsQuery = conn.prepareStatement("SELECT * FROM contacts");
+            getAccountsQuery = conn.prepareStatement("SELECT * FROM accounts");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -84,8 +85,21 @@ public class DAO {
             ResultSet rs = getContactsQuery.executeQuery();
             while (rs.next()) {
                 Contact contact = getContactFromResultSet(rs);
-                // if(contact!=null) System.out.println(contact.getName()+"\n");
                 result.add(contact);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public ArrayList<Account> accounts() {
+        ArrayList<Account> result = new ArrayList();
+        try {
+            ResultSet rs = getAccountsQuery.executeQuery();
+            while (rs.next()) {
+                Account account= getAccountFromResultSet(rs);
+                result.add(account);
             }
         } catch (SQLException e) {
             e.printStackTrace();
