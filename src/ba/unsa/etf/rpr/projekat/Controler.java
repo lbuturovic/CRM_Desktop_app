@@ -1,6 +1,5 @@
 package ba.unsa.etf.rpr.projekat;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,7 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 import static javafx.scene.control.PopupControl.USE_PREF_SIZE;
 
 public abstract class Controler {
@@ -93,5 +91,25 @@ public abstract class Controler {
         stage.setWidth(width);
         stage.setHeight(height);
         stage.show();
+    }
+    protected void openContacts() {
+        Stage stage = (Stage) btnDashboard.getScene().getWindow();
+        root = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contacts.fxml"));
+            Controler ctrl = new ContactsController(user);
+            loader.setController(ctrl);
+            root = loader.load();
+            stage.setTitle("Contacts");
+            double width = stage.getWidth();
+            double height =  stage.getHeight();
+            stage.setScene(new Scene(root,USE_PREF_SIZE,USE_PREF_SIZE));
+            stage.setWidth(width);
+            stage.setHeight(height);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
