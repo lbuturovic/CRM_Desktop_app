@@ -14,6 +14,8 @@ public class DAO {
     private PreparedStatement getDepartmentQuery;
     private PreparedStatement getUserByIdQuery;
     private PreparedStatement getAccountTypeQuery;
+    private PreparedStatement getAccountByIdQuery;
+    private PreparedStatement getContactsQuery;
 
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
@@ -41,6 +43,8 @@ public class DAO {
             getUsersQuery = conn.prepareStatement("SELECT * FROM users ORDER BY department");
             getUserByIdQuery = conn.prepareStatement("SELECT * FROM users WHERE id=?");
             getAccountTypeQuery = conn.prepareStatement("SELECT type FROM accountsType WHERE id=(SELECT type FROM accounts WHERE id=? )");
+            getAccountByIdQuery = conn.prepareStatement("SELECT * FROM accounts WHERE id=?");
+            getContactsQuery = conn.prepareStatement("SELECT * FROM contacts");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -73,6 +77,22 @@ public class DAO {
         }
         return result;
     }
+
+    public ArrayList<Contact> contacts() {
+        ArrayList<Contact> result = new ArrayList();
+        try {
+            ResultSet rs = getContactsQuery.executeQuery();
+            while (rs.next()) {
+                Contact contact = getContactFromResultSet(rs);
+                // if(contact!=null) System.out.println(contact.getName()+"\n");
+                result.add(contact);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     private User getUser(int id){
         try {
             getUserByIdQuery.setInt(1, id);
@@ -93,6 +113,10 @@ public class DAO {
         Account account = new Account(rs.getInt(1), rs.getString(2), getAccountType(rs.getInt(3)), rs.getString(4),rs.getString(5),getUser(rs.getInt(6)),getUser(rs.getInt(7)));
         return account;
     }
+    private Contact getContactFromResultSet(ResultSet rs) throws SQLException {
+        Contact contact = new Contact(rs.getString(2), rs.getString(3), getAccount(rs.getInt(4)), rs.getString(5),rs.getString(6),getUser(rs.getInt(7)),rs.getInt(1),getUser(rs.getInt(8)));
+        return contact;
+    }
 
     private String getAccountType(int accountId) {
         try {
@@ -112,6 +136,19 @@ public class DAO {
             ResultSet rs = getDepartmentQuery.executeQuery();
             if (!rs.next()) return null;
             return rs.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private Account getAccount(int accountId) {
+        try {
+            getAccountByIdQuery.setInt(1, accountId);
+            ResultSet rs = getAccountByIdQuery.executeQuery();
+            if (!rs.next()) return null;
+            Account account = getAccountFromResultSet(rs);
+            return account;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
