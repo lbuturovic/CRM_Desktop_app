@@ -200,4 +200,30 @@ public class ContactsController extends Controler {
         tableViewContacts.setItems(listContacts);
 
     }
+
+    public void dashboardAction(ActionEvent actionEvent) {
+        openDashboard();
+    }
+
+    public void accountsAction(ActionEvent actionEvent) {
+    }
+
+    public void tasksAction(ActionEvent actionEvent) {
+    }
+
+    public void myTeamAction(ActionEvent actionEvent) {
+        openMyTeam();
+    }
+
+    public void sendEmailsAction(ActionEvent actionEvent) {
+        if(user.getPassword()!=null) openEmails("");
+        else openEmailsLogin("");
+    }
+
+    public void signOutAction(ActionEvent actionEvent) {
+        openLogin();
+    }
+    public void reportAction(ActionEvent actionEvent){
+
+    }
 }

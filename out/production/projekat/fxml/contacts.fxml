@@ -16,7 +16,7 @@
                 <HBox prefHeight="66.0" prefWidth="1300.0" style="-fx-background-color: #FFF176;">
                     <Pane style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS" />
                     <Button alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" text="Help" />
-                    <Button fx:id="btnSignOut" alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" />
+                    <Button fx:id="btnSignOut" alignment="CENTER" onAction="#signOutAction" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" />
                     <Button alignment="CENTER" prefHeight="62.0" prefWidth="62.0" style="-fx-background-color: transparent;" text="Help" />
                 </HBox>
             </children>
@@ -30,21 +30,6 @@
                                 <Insets left="40.0" top="35.0" />
                             </HBox.margin>
                         </TextField>
-                        <CheckBox fx:id="chkMarketing" mnemonicParsing="false" selected="true" text="Marketing">
-                            <HBox.margin>
-                                <Insets left="40.0" top="40.0" />
-                            </HBox.margin>
-                        </CheckBox>
-                        <CheckBox fx:id="chkManagement" mnemonicParsing="false" selected="true" text="Management">
-                            <HBox.margin>
-                                <Insets left="40.0" top="40.0" />
-                            </HBox.margin>
-                        </CheckBox>
-                        <CheckBox fx:id="chkSales" mnemonicParsing="false" selected="true" text="Sales">
-                            <HBox.margin>
-                                <Insets left="40.0" top="40.0" />
-                            </HBox.margin>
-                        </CheckBox>
                         <Button fx:id="btn" mnemonicParsing="false" onAction="#unselectAction" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #FFF176; -fx-background-radius: 500px; -fx-border-insets: 5px;" text="Unselect">
                             <HBox.margin>
                                 <Insets left="40.0" top="35.0" />
@@ -53,6 +38,14 @@
                                 <Font name="DejaVu Sans" size="13.0" />
                             </font>
                         </Button>
+                  <Button fx:id="btnReport" layoutX="281.0" layoutY="45.0" mnemonicParsing="false" onAction="#reportAction" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #FFF176; -fx-background-radius: 500px; -fx-border-insets: 5px;" text="Report">
+                     <font>
+                        <Font name="DejaVu Sans" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="40.0" top="35.0" />
+                     </HBox.margin>
+                  </Button>
                         <Button fx:id="btn1" layoutX="471.0" layoutY="45.0" mnemonicParsing="false" onAction="#mailAction" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #FFF176; -fx-background-radius: 500px; -fx-border-insets: 5px;" text="Mail">
                             <font>
                                 <Font name="DejaVu Sans" size="13.0" />
@@ -150,7 +143,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Button>
-                        <Button fx:id="btnDashboard" alignment="CENTER" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-alignment: right;" text="Dashboard" textAlignment="RIGHT" VBox.vgrow="ALWAYS">
+                        <Button fx:id="btnDashboard" alignment="CENTER" mnemonicParsing="false" onAction="#dashboardAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-text-alignment: right;" text="Dashboard" textAlignment="RIGHT" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets bottom="15.0" />
                             </VBox.margin>
@@ -161,7 +154,7 @@
                                 <Insets left="10.0" />
                             </padding>
                         </Button>
-                        <Button fx:id="btnAccounts" alignment="CENTER" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent;-fx-font-weight: bold;" text="Accounts" VBox.vgrow="ALWAYS">
+                        <Button fx:id="btnAccounts" alignment="CENTER" layoutX="10.0" layoutY="78.0" mnemonicParsing="false" onAction="#accountsAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent;-fx-font-weight: bold;" text="Accounts" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets bottom="15.0" />
                             </VBox.margin>
@@ -183,7 +176,7 @@
                                 <Insets left="10.0" />
                             </padding>
                         </Button>
-                        <Button fx:id="btnTasks" alignment="CENTER" layoutX="10.0" layoutY="176.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent;-fx-font-weight: bold;" text="Tasks">
+                        <Button fx:id="btnTasks" alignment="CENTER" layoutX="10.0" layoutY="176.0" mnemonicParsing="false" onAction="#tasksAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent;-fx-font-weight: bold;" text="Tasks">
                             <VBox.margin>
                                 <Insets bottom="15.0" />
                             </VBox.margin>
@@ -194,7 +187,7 @@
                                 <Insets left="10.0" />
                             </padding>
                         </Button>
-                        <Button fx:id="btnMyTeam" alignment="CENTER" layoutX="10.0" layoutY="225.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="My team">
+                        <Button fx:id="btnMyTeam" alignment="CENTER" layoutX="10.0" layoutY="225.0" mnemonicParsing="false" onAction="#myTeamAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="My team">
                             <VBox.margin>
                                 <Insets bottom="15.0" />
                             </VBox.margin>
@@ -205,7 +198,7 @@
                                 <Insets left="10.0" />
                             </padding>
                         </Button>
-                        <Button fx:id="btnMails" alignment="CENTER" layoutX="10.0" layoutY="274.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Send emails">
+                        <Button fx:id="btnMails" alignment="CENTER" layoutX="10.0" layoutY="274.0" mnemonicParsing="false" onAction="#sendEmailsAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Send emails">
                             <VBox.margin>
                                 <Insets bottom="15.0" />
                             </VBox.margin>
