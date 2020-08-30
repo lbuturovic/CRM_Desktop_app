@@ -12,6 +12,7 @@ public class DAO {
     private Connection conn;
     private PreparedStatement getUserQuery;
     private PreparedStatement getDepartmentQuery;
+    private PreparedStatement getUserByIdQuery;
 
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
@@ -37,6 +38,7 @@ public class DAO {
         try {
             getDepartmentQuery = conn.prepareStatement("SELECT name FROM department WHERE id=?");
             getUsersQuery = conn.prepareStatement("SELECT * FROM users ORDER BY department");
+            getUserByIdQuery = conn.prepareStatement("SELECT * FROM users WHERE id=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -69,11 +71,23 @@ public class DAO {
         }
         return result;
     }
-
+    private User getUser(int id){
+        try {
+            getUserByIdQuery.setInt(1, id);
+            ResultSet rs = getUserByIdQuery.executeQuery();
+            if (!rs.next()) return null;
+            User user = getUserFromResultSet(rs);
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     private User getUserFromResultSet(ResultSet rs) throws SQLException {
         User user = new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(7), getDepartment(rs.getInt(8)), rs.getInt(1));
         return user;
     }
+
 
     private String getDepartment(int id) {
         try {
