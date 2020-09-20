@@ -22,6 +22,9 @@ public class DAO {
     private PreparedStatement deleteContactQuery;
     private PreparedStatement getAccountTypeName;
     private PreparedStatement getAccountTypes;
+    private PreparedStatement addAccountQuery;
+    private PreparedStatement updateAccountQuery;
+
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
         return instance;
@@ -47,7 +50,7 @@ public class DAO {
             getDepartmentQuery = conn.prepareStatement("SELECT name FROM department WHERE id=?");
             getUsersQuery = conn.prepareStatement("SELECT * FROM users ORDER BY department");
             getUserByIdQuery = conn.prepareStatement("SELECT * FROM users WHERE id=?");
-            getAccountTypeQuery = conn.prepareStatement("SELECT * FROM accountsType WHERE id=(SELECT type FROM accounts WHERE id=? )");
+            getAccountTypeQuery = conn.prepareStatement("SELECT * FROM accountsType WHERE id=?");
             getAccountByIdQuery = conn.prepareStatement("SELECT * FROM accounts WHERE id=?");
             getContactsQuery = conn.prepareStatement("SELECT * FROM contacts");
             getAccountsQuery = conn.prepareStatement("SELECT * FROM accounts");
@@ -56,6 +59,8 @@ public class DAO {
             deleteContactQuery = conn.prepareStatement("DELETE FROM contacts WHERE id=?");
             getAccountTypeName = conn.prepareStatement("SELECT type FROM accountsType");
             getAccountTypes = conn.prepareStatement("SELECT * FROM accountsType");
+            addAccountQuery = conn.prepareStatement("INSERT INTO accounts (name, type, phone, website, initials, updateBy) VALUES (?,?,?,?,?,?) ");
+            updateAccountQuery = conn.prepareStatement("UPDATE accounts SET name=?, type=?, phone=?, website=?, updateBy=? WHERE id=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -108,7 +113,7 @@ public class DAO {
         try {
             ResultSet rs = getAccountsQuery.executeQuery();
             while (rs.next()) {
-                Account account= getAccountFromResultSet(rs);
+                Account account = getAccountFromResultSet(rs);
                 result.add(account);
             }
         } catch (SQLException e) {
@@ -147,7 +152,7 @@ public class DAO {
             getAccountTypeQuery.setInt(1, accountId);
             ResultSet rs = getAccountTypeQuery.executeQuery();
             if (!rs.next()) return null;
-            AccountType at = new AccountType(rs.getInt(1),rs.getString(2));
+            AccountType at = new AccountType(accountId,rs.getString(2));
             return at;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -196,6 +201,19 @@ public class DAO {
         }
     }
 
+    public void updateAccount(String name, int typeId, String phone, String website, int updatedById, int id) {
+        try {
+            updateAccountQuery.setString(1,name);
+            updateAccountQuery.setInt(2,typeId);
+            updateAccountQuery.setString(3,phone);
+            updateAccountQuery.setString(4,website);
+            updateAccountQuery.setInt(5,updatedById);
+            updateAccountQuery.setInt(6,id);
+            updateAccountQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void addContact(String name, String jobTitle, int accountId, String email, String phone, int initialsId, int updatedById){
 
         try {
@@ -292,6 +310,22 @@ public class DAO {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+
+    }
+
+    public void addAccount(String name, int typeId, String phone , String website, int initialsId, int updatedbyId) {
+
+        try {
+            addAccountQuery.setString(1,name);
+            addAccountQuery.setInt(2,typeId);
+            addAccountQuery.setString(3,phone);
+            addAccountQuery.setString(4,website);
+            addAccountQuery.setInt(5,initialsId);
+            addAccountQuery.setInt(6,updatedbyId);
+            addAccountQuery.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }

@@ -29,7 +29,6 @@ public class AccountsController extends Controler{
     public Button btnDelete, btnUpdate;
     public ChoiceBox<AccountType> choiceType;
     private ObservableList<AccountType> choices;
-
     public AccountsController(User logedInUser) {
         user = logedInUser;
         dao = DAO.getInstance();
@@ -161,9 +160,17 @@ public class AccountsController extends Controler{
     }
 
     public void addAction(ActionEvent actionEvent) {
+        dao.addAccount(fldName.getText(), choiceType.getValue().getId(), fldPhone.getText(), fldWebsite.getText(), user.getId(), user.getId());
+        listAccounts = FXCollections.observableArrayList(dao.accounts());
+        tableViewAccounts.setItems(listAccounts);
     }
 
     public void updateAction(ActionEvent actionEvent) {
+        int id = tableViewAccounts.getSelectionModel().getSelectedItem().getId();
+        int typeId = choiceType.getSelectionModel().getSelectedItem().getId();
+        dao.updateAccount(fldName.getText(),typeId,fldPhone.getText(),fldWebsite.getText(),user.getId(),id);
+        listAccounts = FXCollections.observableArrayList(dao.accounts());
+        tableViewAccounts.setItems(listAccounts);
     }
 
     public void deleteAction(ActionEvent actionEvent) {
