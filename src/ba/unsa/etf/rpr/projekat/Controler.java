@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 import static javafx.scene.control.PopupControl.USE_PREF_SIZE;
 
 public abstract class Controler {
@@ -36,7 +37,7 @@ public abstract class Controler {
         stage.setTitle("My Team");
         double width = stage.getWidth();
         double height =  stage.getHeight();
-        stage.setScene(new Scene(root,USE_PREF_SIZE,USE_PREF_SIZE));
+        stage.setScene(new Scene(root,USE_COMPUTED_SIZE,USE_COMPUTED_SIZE));
         stage.setWidth(width);
         stage.setHeight(height);
         stage.show();
@@ -64,8 +65,9 @@ public abstract class Controler {
             double width = stage.getWidth();
             double height =  stage.getHeight();
             stage.setScene(new Scene(root,USE_PREF_SIZE,USE_PREF_SIZE));
-            stage.setWidth(width);
-            stage.setHeight(height);
+            stage.setWidth(1300);
+            stage.setHeight(650);
+            stage.setResizable(false);
             stage.show();
 
         } catch (IOException e) {

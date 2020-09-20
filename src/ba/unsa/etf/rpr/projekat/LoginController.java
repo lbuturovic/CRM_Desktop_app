@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
+import static javafx.scene.control.PopupControl.USE_PREF_SIZE;
 
 public class LoginController {
 
@@ -35,7 +36,8 @@ public class LoginController {
           root = loader.load();
           stage.setTitle("CRM");
           appController.message3.setText("Welcome, " + user.getName());
-          stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+          stage.setScene(new Scene(root, USE_PREF_SIZE, USE_PREF_SIZE));
+          stage.setResizable(true);
           stage.setMinWidth(stage.getWidth());
           stage.setMinHeight(stage.getHeight());
           stage.show();

@@ -42,7 +42,7 @@
                                 <Insets left="10.0" />
                             </padding>
                         </Button>
-                        <Button fx:id="btnClients" alignment="CENTER" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Clients">
+                        <Button fx:id="btnClients" alignment="CENTER" layoutX="10.0" layoutY="127.0" mnemonicParsing="false" onAction="#contactsAction" prefHeight="81.0" prefWidth="280.0" style="-fx-background-color: transparent; -fx-font-weight: bold;" text="Clients">
                             <VBox.margin>
                                 <Insets bottom="15.0" />
                             </VBox.margin>
@@ -121,17 +121,17 @@
                         <Insets left="40.0" top="35.0" />
                      </HBox.margin>
                   </TextField>
-                  <CheckBox fx:id="chkMarketing" mnemonicParsing="false" selected="true" text="Marketing">
+                  <CheckBox fx:id="chkMarketing" mnemonicParsing="false" onAction="#departmentAction" selected="true" text="Marketing">
                      <HBox.margin>
                         <Insets left="40.0" top="40.0" />
                      </HBox.margin>
                   </CheckBox>
-                  <CheckBox fx:id="chkManagement" mnemonicParsing="false" selected="true" text="Management">
+                  <CheckBox fx:id="chkManagement" mnemonicParsing="false" onAction="#departmentAction" selected="true" text="Management">
                      <HBox.margin>
                         <Insets left="40.0" top="40.0" />
                      </HBox.margin>
                   </CheckBox>
-                  <CheckBox fx:id="chkSales" mnemonicParsing="false" selected="true" text="Sales">
+                  <CheckBox fx:id="chkSales" mnemonicParsing="false" onAction="#departmentAction" selected="true" text="Sales">
                      <HBox.margin>
                         <Insets left="40.0" top="40.0" />
                      </HBox.margin>

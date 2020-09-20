@@ -10,6 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toCollection;
 
 public class MyTeamController extends Controler{
     //private User user;
@@ -22,14 +25,17 @@ public class MyTeamController extends Controler{
     public TableColumn colUserPhoneNumber;
     public TableColumn<User, String> colUserDepartment;
     public ChoiceBox<String> choiceDepartment;
+    public CheckBox chkSales, chkManagement, chkMarketing;
     public TextField filterField;
+    public ArrayList<User> users;
     private ObservableList<User> listUsers;
     private ObservableList<User> filteredUsers;
 
     public MyTeamController(User logedInUser) {
         user = logedInUser;
         super.dao = DAO.getInstance();
-        listUsers = FXCollections.observableArrayList(dao.users());
+        users = dao.users();
+        listUsers = FXCollections.observableArrayList(users);
     }
 
     public MyTeamController() {
@@ -68,6 +74,44 @@ public class MyTeamController extends Controler{
 
     }
 
+    public void departmentAction(ActionEvent actionEvent) {
+        if(chkManagement.isSelected() && chkSales.isSelected() && chkMarketing.isSelected())  listUsers= FXCollections.observableArrayList(users);
+        else if(chkMarketing.isSelected() && chkSales.isSelected()) {
+
+            ArrayList<User> usersByDepartments = users.stream().filter(u ->u.getDepartment().equals("Marketing") || u.getDepartment().equals("Sales")).collect(toCollection(ArrayList::new));
+            listUsers = FXCollections.observableArrayList(usersByDepartments);
+        }
+        else if(chkMarketing.isSelected() && chkManagement.isSelected()) {
+
+            ArrayList<User> usersByDepartments = users.stream().filter(u ->u.getDepartment().equals("Marketing") || u.getDepartment().equals("Management")).collect(toCollection(ArrayList::new));
+            listUsers = FXCollections.observableArrayList(usersByDepartments);
+        }
+
+        else if(chkSales.isSelected() && chkManagement.isSelected()) {
+
+            ArrayList<User> usersByDepartments = users.stream().filter(u ->u.getDepartment().equals("Sales") || u.getDepartment().equals("Management")).collect(toCollection(ArrayList::new));
+            listUsers = FXCollections.observableArrayList(usersByDepartments);
+        }
+        else if(chkSales.isSelected()) {
+
+            ArrayList<User> usersByDepartments = users.stream().filter(u ->u.getDepartment().equals("Sales")).collect(toCollection(ArrayList::new));
+            listUsers = FXCollections.observableArrayList(usersByDepartments);
+        }
+        else if(chkManagement.isSelected()) {
+
+            ArrayList<User> usersByDepartments = users.stream().filter(u ->u.getDepartment().equals("Management")).collect(toCollection(ArrayList::new));
+            listUsers = FXCollections.observableArrayList(usersByDepartments);
+        }
+        else {
+            ArrayList<User> usersByDepartments = users.stream().filter(u ->u.getDepartment().equals("Marketing")).collect(toCollection(ArrayList::new));
+            listUsers = FXCollections.observableArrayList(usersByDepartments);
+        }
+
+        tableViewUsers.setItems(listUsers);
+
+
+    }
+
 
 
     @FXML
@@ -80,8 +124,8 @@ public class MyTeamController extends Controler{
         colUserDepartment.setCellValueFactory(new PropertyValueFactory<User,String>("department"));
 
         filteredUsers = FXCollections.observableArrayList(dao.users());
-        tableViewUsers.setItems(filteredUsers);
-        FilteredList<User> filteredData = new FilteredList<>(filteredUsers, b -> true);
+        tableViewUsers.setItems(listUsers);
+        FilteredList<User> filteredData = new FilteredList<>(listUsers, b -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(person -> {
                 if (newValue == null || newValue.isEmpty()) {
@@ -122,7 +166,7 @@ public class MyTeamController extends Controler{
     public void signOutAction(ActionEvent actionEvent) {
         openLogin();
     }
-
+    public void contactsAction(ActionEvent actionEvent) {openContacts();}
     public void dashboardAction(ActionEvent actionEvent) {
         openDashboard();
     }
