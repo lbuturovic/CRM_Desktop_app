@@ -5,13 +5,13 @@ import java.util.Objects;
 public class Account {
 private int id;
 private String name;
-private String type;
+private AccountType type;
 private String phone;
 private String website;
 private User initials;
 private User updatedBy;
 
-    public Account(int id, String name, String type, String phone, String website, User initials, User updateBy) {
+    public Account(int id, String name, AccountType type, String phone, String website, User initials, User updateBy) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -56,11 +56,11 @@ private User updatedBy;
         this.name = name;
     }
 
-    public String getType() {
+    public AccountType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(AccountType type) {
         this.type = type;
     }
 

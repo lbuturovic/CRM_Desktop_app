@@ -17,7 +17,7 @@ public class AccountsController extends Controler{
     public TextField fileName;
     public TableView<Account> tableViewAccounts;
     public TableColumn colAccountName;
-    public TableColumn colAccountType;
+    public TableColumn<Account,String> colAccountType;
     public TableColumn colAccountWebsite;
     public TableColumn colAccountPhone;
     public TableColumn<Account, String> colAccountInitials;
@@ -27,14 +27,14 @@ public class AccountsController extends Controler{
     private ObservableList<Account> filteredAccounts;
     public Button btnAdd;
     public Button btnDelete, btnUpdate;
-    public ChoiceBox<String> choiceType;
-    private ObservableList<String> choices;
+    public ChoiceBox<AccountType> choiceType;
+    private ObservableList<AccountType> choices;
 
     public AccountsController(User logedInUser) {
         user = logedInUser;
         dao = DAO.getInstance();
         listAccounts = FXCollections.observableArrayList(dao.accounts());
-        choices = FXCollections.observableArrayList(dao.typeNames());
+        choices = FXCollections.observableArrayList(dao.accountTypes());
     }
 
     @FXML
@@ -48,7 +48,7 @@ public class AccountsController extends Controler{
         colAccountName.setCellValueFactory(new PropertyValueFactory("name"));
         colAccountPhone.setCellValueFactory(new PropertyValueFactory("phone"));
         colAccountWebsite.setCellValueFactory(new PropertyValueFactory("website"));
-        colAccountType.setCellValueFactory(new PropertyValueFactory("type"));
+        colAccountType.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getType().getType()));
         colAccountInitials.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getInitials().getName()));
         colAccountUpdateBy.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getUpdatedBy().getName()));
         search_account();
@@ -109,7 +109,7 @@ public class AccountsController extends Controler{
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (account.getType().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                if (account.getType().getType().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true; // Filter matches type
                 } else if (account.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true; // Filter matches name

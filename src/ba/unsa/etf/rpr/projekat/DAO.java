@@ -21,6 +21,7 @@ public class DAO {
     private PreparedStatement addContactQuery;
     private PreparedStatement deleteContactQuery;
     private PreparedStatement getAccountTypeName;
+    private PreparedStatement getAccountTypes;
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
         return instance;
@@ -46,7 +47,7 @@ public class DAO {
             getDepartmentQuery = conn.prepareStatement("SELECT name FROM department WHERE id=?");
             getUsersQuery = conn.prepareStatement("SELECT * FROM users ORDER BY department");
             getUserByIdQuery = conn.prepareStatement("SELECT * FROM users WHERE id=?");
-            getAccountTypeQuery = conn.prepareStatement("SELECT type FROM accountsType WHERE id=(SELECT type FROM accounts WHERE id=? )");
+            getAccountTypeQuery = conn.prepareStatement("SELECT * FROM accountsType WHERE id=(SELECT type FROM accounts WHERE id=? )");
             getAccountByIdQuery = conn.prepareStatement("SELECT * FROM accounts WHERE id=?");
             getContactsQuery = conn.prepareStatement("SELECT * FROM contacts");
             getAccountsQuery = conn.prepareStatement("SELECT * FROM accounts");
@@ -54,6 +55,7 @@ public class DAO {
             addContactQuery = conn.prepareStatement("INSERT INTO contacts (name, jobTitle, account, email, phone, initials, updateBy) VALUES (?,?,?,?,?,?,?)");
             deleteContactQuery = conn.prepareStatement("DELETE FROM contacts WHERE id=?");
             getAccountTypeName = conn.prepareStatement("SELECT type FROM accountsType");
+            getAccountTypes = conn.prepareStatement("SELECT * FROM accountsType");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -140,12 +142,13 @@ public class DAO {
         return contact;
     }
 
-    private String getAccountType(int accountId) {
+    private AccountType getAccountType(int accountId) {
         try {
             getAccountTypeQuery.setInt(1, accountId);
             ResultSet rs = getAccountTypeQuery.executeQuery();
             if (!rs.next()) return null;
-            return rs.getString(1);
+            AccountType at = new AccountType(rs.getInt(1),rs.getString(2));
+            return at;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -268,6 +271,22 @@ public class DAO {
             ArrayList<String> types = new ArrayList<>();
             while(rs.next()){
                 types.add(rs.getString(1));
+            }
+            return types;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public ArrayList<AccountType> accountTypes() {
+        try {
+            ResultSet rs = getAccountTypes.executeQuery();
+            ArrayList<AccountType> types = new ArrayList<>();
+            while(rs.next()){
+                AccountType ac = new AccountType(rs.getInt(1),rs.getString(2));
+                types.add(ac);
             }
             return types;
         } catch (SQLException e) {
