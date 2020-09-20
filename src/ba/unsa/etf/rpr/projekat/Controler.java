@@ -42,6 +42,16 @@ public abstract class Controler {
         stage.setHeight(height);
         stage.show();
     }
+    protected void openAccounts(){
+        Stage stage = prepareForOpen("/fxml/accounts.fxml",new AccountsController(user));
+        stage.setTitle("Accounts");
+        double width = stage.getWidth();
+        double height =  stage.getHeight();
+        stage.setScene(new Scene(root,USE_COMPUTED_SIZE,USE_COMPUTED_SIZE));
+        stage.setWidth(width);
+        stage.setHeight(height);
+        stage.show();
+    }
     protected void openDashboard(){
         Stage stage = prepareForOpen("/fxml/app.fxml",new AppController(user));
         stage.setTitle("Dashboard");
@@ -94,6 +104,7 @@ public abstract class Controler {
         stage.setHeight(height);
         stage.show();
     }
+
     protected void openContacts() {
         Stage stage = (Stage) btnDashboard.getScene().getWindow();
         root = null;

@@ -52,6 +52,7 @@ public class ContactsController extends Controler {
     public void initialize() {
         btnAdd.setDisable(true);
         btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
         tableViewContacts.setItems(listContacts);
         choiceAccount.setItems(choices);
         choiceAccount.getSelectionModel().selectFirst();
@@ -79,8 +80,8 @@ public class ContactsController extends Controler {
             }
 
 
-            if (newEmail == null || validate(newEmail)) fldEmail.getStyleClass().removeAll("poljeNijeIspravno");
-            else fldEmail.getStyleClass().add("poljeNijeIspravno");
+            if (newEmail == null || validate(newEmail)) fldEmail.getStyleClass().removeAll("fieldNotOk");
+            else fldEmail.getStyleClass().add("fieldNotOk");
         });
 
         fldName.textProperty().addListener((obs, oldName, newName) -> {
@@ -95,14 +96,16 @@ public class ContactsController extends Controler {
             }
 
 
-            if (newName == null || newName.length() > 0) fldName.getStyleClass().removeAll("poljeNijeIspravno");
-            else fldName.getStyleClass().add("poljeNijeIspravno");
+            if (newName == null || newName.length() > 0) fldName.getStyleClass().removeAll("fieldNotOk");
+            else fldName.getStyleClass().add("fieldNotOk");
         });
 
         tableViewContacts.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            fldEmail.getStyleClass().removeAll("poljeNijeIspravno");
-            fldName.getStyleClass().removeAll("poljeNijeIspravno");
-            fldPhone.getStyleClass().removeAll("poljeNijeIspravno");
+            if(newSelection==null) btnDelete.setDisable(true);
+            else btnDelete.setDisable(false);
+            fldEmail.getStyleClass().removeAll("fieldNotOk");
+            fldName.getStyleClass().removeAll("fieldNotOk");
+            fldPhone.getStyleClass().removeAll("fieldNotOk");
             if (newSelection != null) {
                 btnUpdate.setDisable(false);
                 Contact selected = tableViewContacts.getSelectionModel().getSelectedItem();
@@ -195,6 +198,7 @@ public class ContactsController extends Controler {
     }
     public void unselectAction(ActionEvent Actionevent) {
         tableViewContacts.getSelectionModel().clearSelection();
+
     }
 
     public void updateAction(ActionEvent actionEvent) {
@@ -212,6 +216,7 @@ public class ContactsController extends Controler {
     }
 
     public void accountsAction(ActionEvent actionEvent) {
+        openAccounts();
     }
 
     public void tasksAction(ActionEvent actionEvent) {

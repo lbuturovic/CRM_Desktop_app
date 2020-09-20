@@ -27,7 +27,7 @@ public class AppController extends Controler {
     }
 
     public void accountsAction(ActionEvent actionEvent) {
-
+        openAccounts();
     }
 
     public void contactsAction(ActionEvent actionEvent) {

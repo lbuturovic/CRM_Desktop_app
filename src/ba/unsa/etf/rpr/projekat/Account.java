@@ -9,7 +9,7 @@ private String type;
 private String phone;
 private String website;
 private User initials;
-private User updateBy;
+private User updatedBy;
 
     public Account(int id, String name, String type, String phone, String website, User initials, User updateBy) {
         this.id = id;
@@ -18,7 +18,7 @@ private User updateBy;
         this.phone = phone;
         this.website = website;
         this.initials = initials;
-        this.updateBy = updateBy;
+        this.updatedBy = updateBy;
     }
 
     @Override
@@ -88,11 +88,11 @@ private User updateBy;
         this.initials = initials;
     }
 
-    public User getUpdateBy() {
-        return updateBy;
+    public User getUpdatedBy() {
+        return updatedBy;
     }
 
-    public void setUpdateBy(User updateBy) {
-        this.updateBy = updateBy;
+    public void setUpdatedBy(User updateBy) {
+        this.updatedBy = updatedBy;
     }
 }

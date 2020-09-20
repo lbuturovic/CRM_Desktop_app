@@ -20,6 +20,7 @@ public class DAO {
     private PreparedStatement updateContactQuery;
     private PreparedStatement addContactQuery;
     private PreparedStatement deleteContactQuery;
+    private PreparedStatement getAccountTypeName;
     public static DAO getInstance() {
         if (instance == null) instance = new DAO();
         return instance;
@@ -52,6 +53,7 @@ public class DAO {
             updateContactQuery = conn.prepareStatement("UPDATE contacts SET name=?, jobTitle=?, account=?, email=?, phone=?, updateBy=? WHERE id=?");
             addContactQuery = conn.prepareStatement("INSERT INTO contacts (name, jobTitle, account, email, phone, initials, updateBy) VALUES (?,?,?,?,?,?,?)");
             deleteContactQuery = conn.prepareStatement("DELETE FROM contacts WHERE id=?");
+            getAccountTypeName = conn.prepareStatement("SELECT type FROM accountsType");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -259,4 +261,19 @@ public class DAO {
         }
     }
 
+    public ArrayList<String> typeNames() {
+
+        try {
+            ResultSet rs = getAccountTypeName.executeQuery();
+            ArrayList<String> types = new ArrayList<>();
+            while(rs.next()){
+                types.add(rs.getString(1));
+            }
+            return types;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
 }
