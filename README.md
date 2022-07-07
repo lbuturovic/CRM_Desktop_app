@@ -10,5 +10,11 @@ CRM Desktop app is intended for a smaller company that cooperates with other com
 ![Contacts](https://github.com/lbuturovic/CRM_Desktop_app/blob/master/Screenshots/Employeers.png)
 ## My team
 ![My team](https://github.com/lbuturovic/CRM_Desktop_app/blob/master/Screenshots/Employeers.png)
+## Gmail login
+![Gmail login](https://github.com/lbuturovic/CRM_Desktop_app/blob/master/Screenshots/Gmail%20login.png)
+## Email
+![Email](https://github.com/lbuturovic/CRM_Desktop_app/blob/master/Screenshots/Mail.png)
+## Tasks
+![Tasks](https://github.com/lbuturovic/CRM_Desktop_app/blob/master/Screenshots/Tasks.png)
 
 
